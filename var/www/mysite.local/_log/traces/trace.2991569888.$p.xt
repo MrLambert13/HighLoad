@@ -1,0 +1,43 @@
+TRACE START [2019-03-12 16:08:27]
+    0.0005     397424  +397424   -> {main}() /var/www/mysite.local/rec.php:0
+    0.0006     397424       +0     -> error_reporting(32767) /var/www/mysite.local/rec.php:3
+    0.0006     397832              >=> 22527
+    0.0006     397832     +408     -> ini_set('display_errors', 1) /var/www/mysite.local/rec.php:4
+    0.0006     397832              >=> ''
+    0.0006     397832       +0     -> recursion($var = 0) /var/www/mysite.local/rec.php:11
+    0.0007     397832       +0       -> recursion($var = 1) /var/www/mysite.local/rec.php:8
+    0.0007     397832       +0         -> recursion($var = 2) /var/www/mysite.local/rec.php:8
+    0.0007     397832       +0           -> recursion($var = 3) /var/www/mysite.local/rec.php:8
+    0.0007     397832       +0             -> recursion($var = 4) /var/www/mysite.local/rec.php:8
+    0.0007     397832       +0               -> recursion($var = 5) /var/www/mysite.local/rec.php:8
+    0.0007     397832       +0                 -> recursion($var = 6) /var/www/mysite.local/rec.php:8
+    0.0007     397832       +0                   -> recursion($var = 7) /var/www/mysite.local/rec.php:8
+    0.0007     397832       +0                     -> recursion($var = 8) /var/www/mysite.local/rec.php:8
+    0.0007     397832       +0                       -> recursion($var = 9) /var/www/mysite.local/rec.php:8
+    0.0008     397832       +0                         -> recursion($var = 10) /var/www/mysite.local/rec.php:8
+    0.0008     397832       +0                           -> recursion($var = 11) /var/www/mysite.local/rec.php:8
+    0.0008     397832       +0                             -> recursion($var = 12) /var/www/mysite.local/rec.php:8
+    0.0008     397832       +0                               -> recursion($var = 13) /var/www/mysite.local/rec.php:8
+    0.0008     397832       +0                                 -> recursion($var = 14) /var/www/mysite.local/rec.php:8
+    0.0008     397832       +0                                   -> recursion($var = 15) /var/www/mysite.local/rec.php:8
+    0.0008     397832       +0                                     -> recursion($var = 16) /var/www/mysite.local/rec.php:8
+    0.0008     397832       +0                                       -> recursion($var = 17) /var/www/mysite.local/rec.php:8
+    0.0008     397832       +0                                         -> recursion($var = 18) /var/www/mysite.local/rec.php:8
+    0.0009     397832       +0                                           -> recursion($var = 19) /var/www/mysite.local/rec.php:8
+    0.0009     397832       +0                                             -> recursion($var = 20) /var/www/mysite.local/rec.php:8
+    0.0009     397832       +0                                               -> recursion($var = 21) /var/www/mysite.local/rec.php:8
+    0.0009     397832       +0                                                 -> recursion($var = 22) /var/www/mysite.local/rec.php:8
+    0.0009     397832       +0                                                   -> recursion($var = 23) /var/www/mysite.local/rec.php:8
+    0.0010     397832       +0                                                     -> recursion($var = 24) /var/www/mysite.local/rec.php:8
+    0.0010     397832       +0                                                       -> recursion($var = 25) /var/www/mysite.local/rec.php:8
+    0.0010     397832       +0                                                         -> recursion($var = 26) /var/www/mysite.local/rec.php:8
+    0.0010     397832       +0                                                           -> recursion($var = 27) /var/www/mysite.local/rec.php:8
+    0.0010     397832       +0                                                             -> recursion($var = 28) /var/www/mysite.local/rec.php:8
+    0.0018     443424   +45592                                                               -> recursion($var = 29) /var/www/mysite.local/rec.php:8
+    0.0019     443424       +0   -> Error->__toString() UNKNOWN?:0
+    0.0019     443472      +48     -> Error->getTraceAsString() UNKNOWN?:0
+    0.0020     447568              >=> '#0 /var/www/mysite.local/rec.php(8): recursion(29)\n#1 /var/www/mysite.local/rec.php(8): recursion(29)\n#2 /var/www/mysite.local/rec.php(8): recursion(28)\n#3 /var/www/mysite.local/rec.php(8): recursion(27)\n#4 /var/www/mysite.local/rec.php(8): recursion(26)\n#5 /var/www/mysite.local/rec.php(8): recursion(25)\n#6 /var/www/mysite.local/rec.php(8): recursion(24)\n#7 /var/www/mysite.local/rec.php(8): recursion(23)\n#8 /var/www/mysite.local/rec.php(8): recursion(22)\n#9 /var/www/mysite.local/rec.php(8): recursi...'
+    0.0020     447520            >=> 'Error: Maximum function nesting level of \'30\' reached, aborting! in /var/www/mysite.local/rec.php:7\nStack trace:\n#0 /var/www/mysite.local/rec.php(8): recursion(29)\n#1 /var/www/mysite.local/rec.php(8): recursion(29)\n#2 /var/www/mysite.local/rec.php(8): recursion(28)\n#3 /var/www/mysite.local/rec.php(8): recursion(27)\n#4 /var/www/mysite.local/rec.php(8): recursion(26)\n#5 /var/www/mysite.local/rec.php(8): recursion(25)\n#6 /var/www/mysite.local/rec.php(8): recursion(24)\n#7 /var/www/mysite.local/rec.ph...'
+    0.0021     359624
+TRACE END   [2019-03-12 16:08:27]
+
