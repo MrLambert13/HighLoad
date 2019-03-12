@@ -48,41 +48,10 @@ chmod 0775 /var/www/mysite.local/
 //в папке /etc/nginx/conf.d/
 nano mysite.local.conf
 
-server {
-    # указываем 80 порт для соединения
-    listen 80;
-    # нужно указать какому доменному имени принадлежит конфиг
-    server_name mysite.local;
-
-    # задаем корневую директорию
-    root /var/www/mysite.local;
-
-    # стартовый файл - всегда index.php
-    index index.php;
-
-   # при обращении к стат файлам логи не нужны, как и обращение в fpm
-    location ~* .(jpg|jpeg|gif|css|png|js|ico|html)$ {
-        access_log off;
-        expires max;
-    }
-
-    # помним про ед точку доступа
-    # запросы направляются в корневую директорию root на index.php
-    location / {
-        try_files $uri $uri/ /index.php?$query_string;
-    }
-
-    # и наконец правило обращение к php-fpm
-    location ~* .php$ {
-        try_files $uri = 404;
-        fastcgi_split_path_info ^(.+.php)(/.+)$;
-        fastcgi_pass unix:/var/run/php-fpm.sock;
-        fastcgi_index index.php;
-        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
-        include fastcgi_params;
-    }
-}
-
-
 //проверка nginx
 nginx -t
+service nginx restart
+systemctl enable nginx
+
+// поменять файл hosts
+127.0.0.1 mysite.local
