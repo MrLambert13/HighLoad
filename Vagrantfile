@@ -72,5 +72,6 @@ Vagrant.configure("2") do |config|
     yum install nginx php72 php72-php-fpm -y
     ln -s /usr/bin/php72 /usr/bin/php
     yum install nano -y
+    yum install php72-php-mbstring -y
   SHELL
 end

@@ -1,0 +1,3 @@
+// устанавливаем xdebug
+yum install php72-php-pecl-xdebug.x86_64 -y
+service php72-php-fpm restart
