@@ -1,0 +1,88 @@
+//репозиторий для nginx
+yum install  epel-release -y
+//репозиторий для php свежего
+rpm -Uvh http://rpms.remirepo.net/enterprise/remi-release-7.rpm
+//установка nginx, php, php-fpm
+yum install nginx php72 php72-php-fpm -y
+//ярлык для php72
+ln -s /usr/bin/php72 /usr/bin/php
+//nano для редактирования конфигов
+yum install nano -y
+
+//разрешаем авторизацию через ssh
+nano /etc/ssh/sshd_config
+PasswordAuthentication no -> PasswordAuthentication yes
+//перезапустить сервис sshd
+service sshd restart
+
+//настраиваем fpm
+nano /etc/opt/remi/php72/php-fpm.d/www.conf
+//меняем пользователя и группу на ngninx
+user = apache -> user = nginx
+group = apache -> group = nginx
+//меняем работу через http на сокет
+listen = 127.0.0.1:9000 -> listen = /var/run/php-fpm.sock
+//расскомментить слушателей юнит сокета
+listen.owner = nobody
+listen.group = nobody
+listen.mode = 0660
+
+//selinux чтобы не мешала
+setenforce 0
+nano /etc/selinux.config
+SELINUX=enforcing -> SELINUX=disabled
+
+
+//запускаем php-fpm сервис
+service php72-php-fpm start
+
+//добавляем сервис в автозапуск
+systemctl enable php72-php-fpm
+
+//создать папку проекта www
+mkdir /var/www
+cd /var/www
+mkdir mysite.local
+chown vagrant:nginx /var//www/mysite.local/
+chmod 0775 /var/www/mysite.local/
+//в папке /etc/nginx/conf.d/
+nano mysite.local.conf
+
+server {
+    # указываем 80 порт для соединения
+    listen 80;
+    # нужно указать какому доменному имени принадлежит конфиг
+    server_name mysite.local;
+
+    # задаем корневую директорию
+    root /var/www/mysite.local;
+
+    # стартовый файл - всегда index.php
+    index index.php;
+
+   # при обращении к стат файлам логи не нужны, как и обращение в fpm
+    location ~* .(jpg|jpeg|gif|css|png|js|ico|html)$ {
+        access_log off;
+        expires max;
+    }
+
+    # помним про ед точку доступа
+    # запросы направляются в корневую директорию root на index.php
+    location / {
+        try_files $uri $uri/ /index.php?$query_string;
+    }
+
+    # и наконец правило обращение к php-fpm
+    location ~* .php$ {
+        try_files $uri = 404;
+        fastcgi_split_path_info ^(.+.php)(/.+)$;
+        fastcgi_pass unix:/var/run/php-fpm.sock;
+        fastcgi_index index.php;
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+        include fastcgi_params;
+    }
+}
+
+
+//проверка nginx
+nginx -t

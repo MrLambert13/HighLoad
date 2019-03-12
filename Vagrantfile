@@ -50,7 +50,7 @@ Vagrant.configure("2") do |config|
   # Example for VirtualBox:
   #
    config.vm.provider "virtualbox" do |v|
-	 v.name = " GB_HL_1"
+	 v.name = "GB_HL_1"
    end
    config.vm.provider "virtualbox" do |vb|
   #   # Display the VirtualBox GUI when booting the machine
@@ -66,8 +66,11 @@ Vagrant.configure("2") do |config|
   # Enable provisioning with a shell script. Additional provisioners such as
   # Puppet, Chef, Ansible, Salt, and Docker are also available. Please see the
   # documentation for more information about their specific syntax and use.
-  # config.vm.provision "shell", inline: <<-SHELL
-  #   apt-get update
-  #   apt-get install -y apache2
-  # SHELL
+  config.vm.provision "shell", inline: <<-SHELL
+    yum install  epel-release -y
+    rpm -Uvh http://rpms.remirepo.net/enterprise/remi-release-7.rpm
+    yum install nginx php72 php72-php-fpm -y
+    ln -s /usr/bin/php72 /usr/bin/php
+    yum install nano -y
+  SHELL
 end
