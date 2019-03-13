@@ -1,4 +1,6 @@
 <?php
+
+namespace app;
 $timeStart = time();
 $startMemory = memory_get_usage();
 

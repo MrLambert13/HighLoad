@@ -4,3 +4,23 @@ service php72-php-fpm restart
 
 mkdir /var/www/mysite.local/_log/tracers/
 chmod 0777 /var/www/mysite.local/_log/tracers/
+
+//Composer
+yum install composer -y
+php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+php composer-setup.php
+php -r "unlink('composer-setup.php');"
+mv composer.phar /usr/bin/composer
+yum install zip unzip
+
+//monolog
+composer require monolog/monolog
+
+//git
+yum install php72-php-devel.x86_64 -y
+yum install php72-php-pear.noarch -y
+yum install pcre-devel.x86_64 -y
+yum install gcc-plugin-devel.x86_64 -y
+yum install automake.noarch -y
+
+yum install git -y
