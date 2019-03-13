@@ -73,5 +73,15 @@ Vagrant.configure("2") do |config|
     ln -s /usr/bin/php72 /usr/bin/php
     yum install nano -y
     yum install php72-php-mbstring -y
+    yum install php72-php-pecl-xdebug.x86_64 -y
+    setenforce 0
+    systemctl enable php72-php-fpm
+    systemctl enable nginx
+    mkdir /var/www
+    mkdir /var/www/mysite.local
+    chown vagrant:nginx /var//www/mysite.local/
+    chmod 0775 /var/www/mysite.local/
+    mkdir /var/www/mysite.local/_log/traces
+    chmod 0777 /var/www/mysite.local/_log/traces/
   SHELL
 end
