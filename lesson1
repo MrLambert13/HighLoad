@@ -43,7 +43,7 @@ systemctl enable php72-php-fpm
 mkdir /var/www
 cd /var/www
 mkdir mysite.local
-chown vagrant:nginx /var//www/mysite.local/
+chown vagrant:www-data /var//www/mysite.local/
 chmod 0775 /var/www/mysite.local/
 //в папке /etc/nginx/conf.d/
 nano mysite.local.conf

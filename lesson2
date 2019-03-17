@@ -16,7 +16,7 @@ yum install zip unzip
 //monolog
 composer require monolog/monolog
 
-//git
+//XHProf
 yum install php72-php-devel.x86_64 -y
 yum install php72-php-pear.noarch -y
 yum install pcre-devel.x86_64 -y

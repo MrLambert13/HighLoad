@@ -1,14 +1,12 @@
 <?php
 
-namespace app;
-$timeStart = time();
-$startMemory = memory_get_usage();
+namespace mysite;
 
 class Log
 {
     static function _log($s, $suffix = '') {
         if (is_array($s) || is_object($s)) $s = print_r($s, 1);
-        $s = "### " . date("d.m.Y H:i:s") . "\r\n" . $s . "\r\n\r\n\r\n";
+        $s = "### " . date("d.m.Y H:i:s") . "\r\n" . $s . "\r\n\r\n";
         if (mb_strlen($suffix))
             $suffix = "_" . $suffix;
         self::_write($_SERVER['DOCUMENT_ROOT'] . "/_log/logs" . $suffix . ".log", $s, "a+");
@@ -54,13 +52,24 @@ class Log
     }
 }
 
+$timeStart = time();
+$startMemory = memory_get_usage();
+
 for ($i = 0; $i < 10000000; $i++) {
     for ($s = 0; $s < 10; $s++) {
 
     }
 }
-$endMemory = memory_get_usage();
 
+$endMemory = memory_get_usage();
 $timeEnd = time();
-$a = $endMemory - $startMemory;
-Log::_log($a);
+
+$deltaT = $timeEnd - $timeStart;
+$deltaM = $endMemory - $startMemory;
+$pid = getmypid();
+
+xhprof_enable(XHPROF_FLAGS_CPU + XHPROF_FLAGS_MEMORY);
+Log::_log([$deltaM, $deltaT, $pid]);
+
+$xhprof_data = xhprof_disable();
+
