@@ -1,13 +1,4 @@
-extension=/usr/lib/php/20160303/xhprof.so
-xhprof.output_dir=/tmp
-/var/lib/php/modules/7.1/fpm/enabled_by_admin/xhprof
-/var/lib/php/modules/7.1/cli/enabled_by_admin/xhprof
-/var/www/mysite.local/_log/xhprof
-/usr/lib/php/20160303/xhprof.so
-/etc/php/7.1/fpm/conf.d/20-xhprof.ini
-/etc/php/7.1/mods-available/xhprof.ini
-/etc/php/7.1/cli/conf.d/20-xhprof.ini
-
-
-mkdir /var/www/mysite.local/_log/xhprof/
-chmod 0777 /var/www/mysite.local/_log/xhprof/
+wget https://repo.percona.com/apt/percona-release_latest.$(lsb_release -sc)_all.deb
+dpkg -i percona-release_latest.$(lsb_release -sc)_all.deb
+apt-get update
+apt-get install percona-server-server-5.7
