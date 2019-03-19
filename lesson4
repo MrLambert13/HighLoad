@@ -1,0 +1,6 @@
+SHOW MASTER STATUS;
+
+create user 'slave_user'@'%' identified by '123456';
+GRANT REPLICATION CLIENT, replication slave ON *.* TO 'slave_user'@'%';
+FLUSH privileges;
+SHOW GRANTS FOR 'slave_user'@'%';
