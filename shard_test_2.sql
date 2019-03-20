@@ -1,0 +1,1 @@
+CREATE SCHEMA `shard_test_2` ;
