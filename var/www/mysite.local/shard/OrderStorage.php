@@ -7,14 +7,14 @@
  */
 
 namespace shard;
-use shard\ShardingStragegy;
+use shard\ShardingStrategy;
 
 
 
 class OrderStorage
 {
     protected function runQuery($query, Order $order) {
-        mysqli_query($query, ShardingStragegy::getInstance()->getConnection($order));
+        mysqli_query($query, ShardingStrategy::getInstance()->getConnection($order));
     }
 
     public function insert(Order $order) {

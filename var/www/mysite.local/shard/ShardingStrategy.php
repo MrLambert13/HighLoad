@@ -9,7 +9,7 @@
 namespace shard;
 
 
-class ShardingStragegy
+class ShardingStrategy
 {
     protected static $instance = null;
     protected $server1;

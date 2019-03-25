@@ -1,0 +1,12 @@
+apt-get -y install memcached
+apt-get -y install php-memcached
+service php7.1-fpm restart
+netstat -tap | grep memcached
+
+nano /etc/memcached.conf
+делаем -u nobody
+
+service memcached restart
+
+
+apt-get install redis-server
