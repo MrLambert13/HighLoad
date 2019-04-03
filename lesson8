@@ -1,0 +1,6 @@
+apt-get install htop
+
+wget https://repo.zabbix.com/zabbix/4.2/ubuntu/pool/main/z/zabbix-release/zabbix-release_4.2-1+xenial_all.deb
+dpkg -i zabbix-release_4.2-1+xenial_all.deb
+apt update
+zcat /usr/share/doc/zabbix-proxy-mysql/create.sql.gz | mysql -uzabbix -p zabbix

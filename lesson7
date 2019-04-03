@@ -1,0 +1,12 @@
+composer require cboden/ratchet
+sudo apt-get install rabbitmq-server
+sudo rabbitmq-plugins enable rabbitmq_management
+sudo rabbitmq-server restart
+
+rabbitmqctl add_user test test
+rabbitmqctl set_user_tags test administrator
+rabbitmqctl set_permissions -p / test ".*" ".*" ".*"
+
+sudo apt-get install php-amqp
+
+"php-amqplib/php-amqplib": "2.6.*"
